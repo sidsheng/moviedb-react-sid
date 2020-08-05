@@ -1,6 +1,5 @@
 import React from 'react'
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import MovieDetails from './MovieDetails';
+import { Col, Card } from 'react-bootstrap';
 
 export default function MovieList() {
     return (
@@ -8,7 +7,7 @@ export default function MovieList() {
             <Card style={{ width: '18rem' }}>
             <Card.Body>
                 <Card.Text>
-                    <Col><MovieDetails /></Col>
+                    <Col><h1>MovieDetails</h1></Col>
                 </Card.Text>
             </Card.Body>
         </Card>

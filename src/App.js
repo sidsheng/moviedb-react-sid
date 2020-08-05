@@ -1,34 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import Context from "./Context"
+import React from 'react';
 import axios from 'axios'
 import './App.css';
 import MovieList from './components/MovieList';
 import SearchMovies from './components/SearchMovies';
 
-function App() {
-  const [error, setError] = useState(null)
-  const api_key = 'a3c48ab128857c0d154f52a15930e310'
-
-  const api_call = async e => {
-    e.preventDefault()
-
-    const url = `https://api.themoviedb.org/3/movie/550?api_key=${api_key}`
-    const request = axios.get(url)
-    const response = await request
-    setError(null)
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      movies: [],
+      searchString: ''
+    }
+    this.api_key = process.env.REACT_APP_API
   }
 
-  return (
-    <div className="App">
-      <h1>Sid's Movies</h1>
-        <div className="container">
-          <Context.Provider value={{api_call}}>
-            <SearchMovies />
+  handleSubmit = (e) => {
+    e.preventDefault()
+
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${this.api_key}&query=${this.state.searchString}`
+    axios.get(url)
+      .then(res => {
+        console.log(res)
+        this.setState({
+            movies: [...res.data.results]
+        })
+    })
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      searchString: e.target.value
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Sid's Movie Database</h1>
+          <div className="container">
+            <SearchMovies handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
             <MovieList />
-          </Context.Provider>
-        </div>
-    </div>
-  );
+          </div>
+      </div>
+    );
+  }
 }
 
 export default App;

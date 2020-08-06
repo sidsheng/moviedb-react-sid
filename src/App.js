@@ -39,7 +39,7 @@ class App extends React.Component {
         <h1>Sid's Movie Database</h1>
           <div className="container">
             <SearchMovies handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
-            <MovieList />
+            <MovieList movies={this.state.movies}/>
           </div>
       </div>
     );

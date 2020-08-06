@@ -1,16 +1,21 @@
 import React from 'react'
-import { Col, Card } from 'react-bootstrap';
+import Movie from './Movie';
+import { CardGroup } from 'react-bootstrap';
 
-export default function MovieList() {
+const MovieList = (props) => {
     return (
         <div>
-            <Card style={{ width: '18rem' }}>
-            <Card.Body>
-                <Card.Text>
-                    <Col><h1>MovieDetails</h1></Col>
-                </Card.Text>
-            </Card.Body>
-        </Card>
+            <CardGroup>
+                {
+                    props.movies.map((movie, i) => {
+                        return (
+                            <Movie key={i} image={movie.poster_path} />
+                        )
+                    })
+                }
+            </CardGroup>
         </div>
     )
 }
+
+export default MovieList

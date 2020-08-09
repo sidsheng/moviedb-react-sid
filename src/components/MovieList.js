@@ -1,11 +1,11 @@
 import React from 'react'
 import Movie from './Movie';
-import { CardGroup } from 'react-bootstrap';
+import { CardDeck } from 'react-bootstrap';
 
 const MovieList = (props) => {
     return (
         <div>
-            <CardGroup>
+            <CardDeck>
                 {
                     props.movies.map((movie, i) => {
                         return (
@@ -13,7 +13,7 @@ const MovieList = (props) => {
                         )
                     })
                 }
-            </CardGroup>
+            </CardDeck>
         </div>
     )
 }

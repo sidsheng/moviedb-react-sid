@@ -5,11 +5,11 @@ import { CardDeck } from 'react-bootstrap';
 const MovieList = (props) => {
     return (
         <div>
-            <CardDeck>
+            <CardDeck className="justify-content-center">
                 {
                     props.movies.map((movie, i) => {
                         return (
-                            <Movie key={i} image={movie.poster_path} />
+                            <Movie key={i} viewMovieInfo={props.viewMovieInfo} movieId={movie.id} image={movie.poster_path} />
                         )
                     })
                 }
